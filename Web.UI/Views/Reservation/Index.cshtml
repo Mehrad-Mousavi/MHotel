@@ -1,0 +1,61 @@
+﻿@model List<Domain.Entities.Reservation>
+    
+@{
+    ViewBag.Title = "Reservations";
+}
+
+<div class="table-container">
+    <div class="data-header-wrapper">
+        <h1 class="Title">Your reservations list</h1>
+        <a href="@Url.Action("New", "Reservation")">Add Reservation</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>HotelName</th>
+                <th>CheckIn</th>
+                <th>CheckOut</th>
+                <th>TotalPrice</th>
+                <th class="operation-wrapper">Operation</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{ int RowId = 1; }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@RowId</td>
+                    <td>@item.Hotel.HotelName</td>
+                    <td>@item.CheckIn</td>
+                    <td>@item.CheckOut</td>
+                    <td>@item.TotalPrice</td>
+                    <td class="operation-wrapper">
+                        <button class="action-button" onclick="Delete('@item.ReservationId')">
+                            <img src="/assets/images/buttons/trash.svg">
+                        </button>
+                    </td>
+                </tr>
+                RowId++;
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function Delete(Id) {
+        $.ajax({
+            url: '/Reservation/Delete',
+            type: 'post',
+            data: { Id: Id },
+            success: function () {
+                // window.location.href = '/Reservation';
+                window.location.reload();
+            }
+        });
+    }
+</script>
+

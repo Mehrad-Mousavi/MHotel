@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="Application/Application.csproj" Id="262d1d8f-09ae-4ae8-a27a-64cdfc3e13be" />
+    <Project Path="Domain/Domain.csproj" Id="221ce8b9-a24f-49e7-b279-92df43e03871" />
+    <Project Path="Model/Model.csproj" Id="3bb65db4-5fb3-496a-9718-243e9f0fffec" />
+    <Project Path="ViewModel/ViewModel.csproj" Id="5fe9f612-38b1-4e42-b09d-83e6dc5aa69d" />
+  </Folder>
+  <Project Path="Web.UI/Web.UI.csproj" Id="83c28ae9-d072-4a93-a92d-353fe04cf526" />
+</Solution>

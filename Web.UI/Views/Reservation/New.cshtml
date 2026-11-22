@@ -1,0 +1,72 @@
+﻿@model ViewModel.ReservationViewModel
+    
+@{
+    ViewBag.Title = "Reservation";
+ }
+
+<div class="card-container">
+    <h1 class="title">Reserv Hotel</h1>
+    <a href="@Url.Action("Index", "Reservation")">Back to See your reservations</a>
+    <div Class="card-wrapper">
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(property => property.HotelId)
+                @Html.DropDownListFor(property => property.HotelId, Model.Hotels)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(property => property.CheckIn)
+                @Html.TextBoxFor(property => property.CheckIn, "{0:yyyy-MM-dd}", new { type = "date" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(property => property.CheckOut)
+                @Html.TextBoxFor(property => property.CheckOut, "{0:yyyy-MM-dd}", new { type = "date" })
+            </div>
+
+            <p> Nights: <span id="NightsLable">0</span> </p>
+
+            <p>TotalPrice : <span id="TotalPriceLable">0</span></p>
+
+            @Html.ValidationSummary()
+            <button type="submit">Reserve</button>
+        }
+
+
+
+        <script>
+               var Prices = {};
+
+              @foreach (var item in Model.HotelsInfo)
+              {
+                   <text>Prices[@item.HotelId] = @item.PricePerNight.ToString(System.Globalization.CultureInfo.InvariantCulture);</text>
+              }
+
+               function CalcReservation() {
+                   var CheckIn = new Date(document.getElementById('CheckIn').value);
+                   var CheckOut = new Date(document.getElementById('CheckOut').value);
+                   var Nights = Math.round((CheckOut - CheckIn) / (1000 * 60 * 60 * 24));
+
+                   if (isNaN(Nights) || Nights < 0)
+                       Nights = 0;
+
+                   var HotelId = document.getElementById('HotelId').value;
+                   var TotalPrice = Nights * Prices[HotelId];
+
+                   if (isNaN(TotalPrice))
+                       TotalPrice = 0;
+
+                   document.getElementById('TotalPriceLable').innerText = TotalPrice;
+                   document.getElementById('NightsLable').innerText = Nights;
+               }
+
+               document.getElementById('HotelId').addEventListener('change', CalcReservation);
+               document.getElementById('CheckIn').addEventListener('change', CalcReservation);
+               document.getElementById('CheckOut').addEventListener('change', CalcReservation);
+
+               CalcReservation();
+        </script>
+    </div>
+</div>
+
+
