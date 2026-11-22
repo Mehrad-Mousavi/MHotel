@@ -9,9 +9,9 @@ The application allows users to browse available hotels, search for hotels, and 
 
 ## Technologies
  
-- **C#
-- **ASP.NET MVC 5
-- **Entity Framework 6
+- C
+- ASP.NET MVC 5
+- **Entity Framework 6**
 - **SQL Server
 - **HTML, CSS
 - **JavaScript
