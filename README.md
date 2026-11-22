@@ -24,6 +24,12 @@ The application allows users to browse available hotels, search for hotels, and 
 -Reservation Management
 
 
+## Planned Features
+-Login page
+-User authentication
+-User access control
+
+
 ## Database Structure
 The database includes the folowing entities :
 -Hotel
