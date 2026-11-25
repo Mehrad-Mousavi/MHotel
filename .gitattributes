@@ -57,5 +57,3 @@
 #*.DOCX  diff=astextplain
 #*.dot   diff=astextplain
 
-
-Web.UI/Scripts/** linguist-vendored
